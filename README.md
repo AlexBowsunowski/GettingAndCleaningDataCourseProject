@@ -1,7 +1,8 @@
 # README
-##Getting and Cleaning Data course project
 
-##Description of the program
+## Getting and Cleaning Data course project
+
+## Description of the program
 
 ### Download File
 ```r
@@ -19,7 +20,7 @@ activityLabels = read.table(file.path(pathdata, "activity_labels.txt"),header = 
 
 ```
 
-###Rename the name of the column
+### Rename the name of the column
 ```r
 colnames(x_train) <- features[,2]
 colnames(x_test) <- features[,2]
@@ -32,3 +33,4 @@ colnames(subject_test) <- "subjectID"
 
 colnames(activityLabels) <- c("activityID", "activityType")
 ```
+=======
