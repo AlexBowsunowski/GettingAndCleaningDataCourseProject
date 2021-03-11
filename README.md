@@ -52,15 +52,15 @@ Extracts only the measurements on the mean and standard deviation for each measu
 data_for_mean_std <- (grepl("activityID" , cnames) | grepl("subjectID" , cnames) | grepl("mean.." , cnames) | grepl("std.." , cnames))
 dataMean_Std <- data[, data_for_mean_std == T] 
 ```
-Appropriately labels the data set with descriptive variable names.
+Appropriately labels the data set with descriptive variable names. Create tidy data set with the average of each variable for each activity and each subject.
 ```r
 dataActivity <- merge(dataMean_Std, activityLabels, by = 'activityID', all.x = T)
-tidySet <- aggregate(. ~subjectID + activityID, dataActivity, mean)
-tidySet <- tidySet[order(tidySet$subjectID, tidySet$activityID),]
+tidyData <- aggregate(. ~subjectID + activityID, dataActivity, mean)
+tidyData <- tidyData[order(tidyData$subjectID, tidyData$activityID),]
 ```
 Write the received data to a file TidySet.txt
 ```r
-write.table(tidySet, "TidySet.txt", row.name = F)
+write.table(tidyData, "TidyData.txt", row.name = F)
 ```
 ##### Tidy data
-[TidySet](https://github.com/AlexBowsunowski/GettingAndCleaningDataCourseProject/blob/main/TidySet.txt)
+[TidyData](https://github.com/AlexBowsunowski/GettingAndCleaningDataCourseProject/blob/main/TidyData.txt)
