@@ -20,9 +20,9 @@ colnames(x_train) <- features[,2]
 colnames(x_test) <- features[,2]
 
 colnames(y_train) <- "activityID"
-colnames(subject_train) <- "subjectID"
-
 colnames(y_test) <- "activityID"
+
+colnames(subject_train) <- "subjectID"
 colnames(subject_test) <- "subjectID"
 
 colnames(activityLabels) <- c("activityID", "activityType")
@@ -40,10 +40,9 @@ dataMean_Std <- data[, data_for_mean_std == T]
 
 #Appropriately labels the data set with descriptive variable names. 
 dataActivity <- merge(dataMean_Std, activityLabels, by = 'activityID', all.x = T)
-dataActivity[1,]$activityType
 
-str(dataActivity)
-dataActivity$activityType
-tidySet <- aggregate(. ~subjectID + activityID, dataActivity, mean)
-tidySet <- tidySet[order(tidySet$subjectID, tidySet$activityID),]
-write.table(tidySet, "TidySet.txt", row.name = F)
+#Create tidy data set with the average of each variable for each activity and each subject.
+tidyData <- aggregate(. ~subjectID + activityID, dataActivity, mean)
+tidyData <- tidyData[order(tidyData$subjectID, tidyData$activityID),]
+
+write.table(tidyData, "TidyData.txt", row.name = F)
